@@ -5,10 +5,15 @@ const passportSetup = require("./passport");
 const passport = require("passport");
 const authRoute = require("./routes/auth");
 const app = express();
+const session = require("express-session")
 
-app.use(
-    cookieSession({ name: "session", keys: ["privatekey"], maxAge: 24 * 60 * 60 * 100 })
-  );
+//Setup the session middleware
+app.use(session({
+  secret:process.env.SESSION_SECRET,
+  resave:true,
+  saveUninitialized:true,
+  cookie:{maxAge:1000*60*60} //1 hour
+}));
   
   app.use(passport.initialize());
   app.use(passport.session());

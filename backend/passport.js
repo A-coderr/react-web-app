@@ -1,5 +1,4 @@
-import passport from 'passport'; 
-import { Strategy as GoogleStrategy} from "passport-google-oauth20";
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const passport = require("passport");
 
 passport.use(
